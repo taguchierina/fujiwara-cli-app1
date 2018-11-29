@@ -2,22 +2,22 @@
 const button = document.getElementById("main");  // HTML中のボタン（id="main"）を検索
 button.addEventListener("click", function () {
   // ユーザIDをテキストフィールド（id="userId"）から取得
-  const nameId = document.getElementById("nameId").value;
+  const userId = document.getElementById("userId").value;
 
   // ユーザ情報をGitHub APIから取得
-  getUserInfo(nameId);
+  getUserInfo(userId);
 });
 
 // 1. ここまで
 
 // 2. GitHub APIにリクエストを送り、レスポンスを受け取る
-function getUserInfo(nameId) {
+function getUserInfo(userId) {
   // XMLHttpRequest(XHR)オブジェクトの初期化
   const request = new XMLHttpRequest();
 
   // URLを組み立てて、リクエストを準備する（まだリクエストは未送信）
-  const userIdEncoded = encodeURIComponent(nameId);  // URL用にエンコード
-  const url = `https://connpass.com/api/v1/event/`;  // テンプレートリテラルを使用（バッククォートで囲む）、URLをGithubからconnpassに変更
+  const userIdEncoded = encodeURIComponent(userId);  // URL用にエンコード
+  const url = `https://api.github.com/users/${userIdEncoded}`;  // テンプレートリテラルを使用（バッククォートで囲む）
   request.open("GET", url);
 
   // サーバからレスポンスが返ってきた場合の処理を登録
